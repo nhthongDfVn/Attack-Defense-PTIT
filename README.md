@@ -2,19 +2,33 @@
 
 [![Build Status](https://travis-ci.org/freehackquest/fhq-jury-ad.svg?branch=master)](https://travis-ci.org/freehackquest/fhq-jury-ad)
 
-Jury System for a attack-defence ctf game.
+Jury System for a attack-defence ctf game (ctf-scoreboard).
 Or you can use for training.
 
-
-* [CHECKER_INFO: description](https://github.com/freehackquest/fhq-jury-ad/blob/master/docs/CHECKER_INFO.md)
 * [API: here](https://github.com/freehackquest/fhq-jury-ad/blob/master/docs/API.md)
 * [DOCKER_HUB: description](https://github.com/freehackquest/fhq-jury-ad/blob/master/docs/DOCKER_HUB.md)
 * [TRAINING MODE: lazy-start](https://github.com/freehackquest/fhq-jury-ad/blob/master/docs/LAZY_START.md)
 * [SIMILAR: systems](https://github.com/freehackquest/fhq-jury-ad/blob/master/docs/SIMILAR.md)
 
+## For Developers
+
+* [BUILD: Ubuntu/Debian](https://github.com/freehackquest/fhq-jury-ad/blob/master/docs/BUILD_UBUNTU.md)
+* [BUILD: MacOS](https://github.com/freehackquest/fhq-jury-ad/blob/master/docs/BUILD_MACOS.md)
+* [BUILD: Docker](https://github.com/freehackquest/fhq-jury-ad/blob/master/docs/BUILD_DOCKER.md)
+
+## Screens
 
 ![scoreboard](https://raw.githubusercontent.com/freehackquest/fhq-jury-ad/master/misc/screens/screen1.png)
 ![scoreboard-info](https://raw.githubusercontent.com/freehackquest/fhq-jury-ad/master/misc/screens/screen2.png)
+
+
+## Example vulnerability services and checkers:
+
+* [CHECKER_INFO: description](https://github.com/freehackquest/fhq-jury-ad/blob/master/docs/CHECKER_INFO.md)
+* [example_service1](https://github.com/freehackquest/fhq-jury-ad/tree/master/vulnbox/example_service1)
+* [Checker & Config for: example_service1](https://github.com/freehackquest/fhq-jury-ad/tree/master/jury.d/checkers/example_service1/)
+
+
 
 ### Download and basic configuration
 
