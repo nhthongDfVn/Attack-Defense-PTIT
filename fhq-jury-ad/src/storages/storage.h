@@ -34,9 +34,6 @@ public:
     // how much stolen flags from specify service
     virtual int numberOfStolenFlagsForService(const std::string &sServiceId) = 0;
 
-    // move flag to archive
-    virtual void insertToArchive(Flag &flag) = 0;
-
     // copy flag to defence
     virtual void insertToFlagsDefence(const Flag &flag, int nPoints) = 0;
 

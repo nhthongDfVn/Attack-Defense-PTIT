@@ -768,30 +768,6 @@ void MySqlStorage::deleteFlagLive(const Flag &flag) {
 
 // ----------------------------------------------------------------------
 
-void MySqlStorage::insertToArchive(Flag &flag) {
-    MYSQL *pConn = getDatabaseConnection();
-    std::string sQuery = "INSERT INTO flags(serviceid, flag_id, flag, teamid, "
-        "   date_start, date_end, team_stole) VALUES("
-        "'" + flag.serviceId() + "', "
-        + "'" + flag.id() + "', "
-        + "'" + flag.value() + "', "
-        + "'" + flag.teamId() + "', "
-        + std::to_string(flag.timeStart()) + ", "
-        + std::to_string(flag.timeEnd()) + ", "
-        + "'" + flag.teamStole() + "'"
-        + ");";
-
-    if (mysql_query(pConn, sQuery.c_str())) {
-        WsjcppLog::err(TAG, "Error insert: " + std::string(mysql_error(pConn)));
-        return;
-    }
-
-    MYSQL_RES *pRes = mysql_use_result(pConn);
-    mysql_free_result(pRes);
-}
-
-// ----------------------------------------------------------------------
-
 void MySqlStorage::insertToFlagsDefence(const Flag &flag, int nPoints) {
     MYSQL *pConn = getDatabaseConnection();
     std::string sQuery = "INSERT INTO flags_defence(serviceid, teamid, flag_id, flag, "
