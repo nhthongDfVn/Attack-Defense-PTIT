@@ -85,8 +85,6 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-    
-
     std::string sWorkspace = "/usr/share/fhq-jury-ad/jury.d"; // default workspace
     if (helpParseArgs.has("--workspace-dir")) {
         // todo replace workspace path

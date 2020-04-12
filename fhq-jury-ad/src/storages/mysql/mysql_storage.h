@@ -22,8 +22,6 @@ class MySqlStorage : public Storage {
         virtual std::vector<Flag> listOfLiveFlags();
         virtual void insertFlagPutFail(const Flag &flag, const std::string &sReason);
         virtual void insertFlagCheckFail(const Flag &flag, const std::string &sReason);
-        virtual void insertFlagAttempt(const std::string &sTeamId, const std::string &sFlag);
-        virtual int numberOfFlagAttempts(const std::string &sTeamId);
         virtual void insertToArchive(Flag &flag);
         virtual void insertToFlagsDefence(const Flag &flag, int nPoints);
         virtual void insertToFlagsStolen(const Flag &flag, const std::string &sTeamId, int nPoints);

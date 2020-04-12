@@ -4,6 +4,7 @@
 #include <wsjcpp_light_web_server.h>
 #include <config.h>
 #include <json.hpp>
+#include <employ_flags.h>
 
 class HttpHandlerApiV1 : public WsjcppLightWebHttpHandlerBase {
     public:
@@ -13,6 +14,8 @@ class HttpHandlerApiV1 : public WsjcppLightWebHttpHandlerBase {
 
     private:
         std::string TAG;
+
+        EmployFlags *m_pEmployFlags;
 
         Config *m_pConfig;
         std::string m_sIndexHtml;

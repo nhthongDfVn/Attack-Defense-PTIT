@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <wsjcpp_core.h>
+#include <employ_flags.h>
 
 // ---------------------------------------------------------------------
 
@@ -122,7 +123,6 @@ void Scoreboard::initJsonScoreboard() {
 void Scoreboard::updateJsonScoreboard() {
     std::lock_guard<std::mutex> lock(m_mutexJson);
 
-    
     // TODO update score
     // TODO update costs
 }
@@ -181,6 +181,7 @@ void Scoreboard::initStateFromStorage() {
     }
 
     // load services statistics
+    EmployFlags *pEmployFlags = findWsjcppEmploy<EmployFlags>();
     m_nAllStolenFlags = 0;
     m_nAllDefenceFlags = 0;
     for (unsigned int i = 0; i < m_vServices.size(); i++) {
@@ -199,7 +200,7 @@ void Scoreboard::initStateFromStorage() {
     for (it = m_mapTeamsStatuses.begin(); it != m_mapTeamsStatuses.end(); it++) {
         TeamStatusRow *pRow = it->second;
 
-        int nTries = m_pStorage->numberOfFlagAttempts(pRow->teamId());
+        int nTries = pEmployFlags->numberOfFlagAttempts(pRow->teamId());
         pRow->setTries(nTries);
         m_jsonScoreboard["scoreboard"][pRow->teamId()]["tries"] = nTries;
 
