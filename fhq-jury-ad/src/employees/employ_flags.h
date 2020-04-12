@@ -1,5 +1,7 @@
-#ifndef FLAG_H
-#define FLAG_H
+#ifndef EMPLOY_FLAGS_H
+#define EMPLOY_FLAGS_H
+
+#include <wsjcpp_employees.h>
 
 #include <string>
 
@@ -43,4 +45,25 @@ class Flag {
         std::string m_sTeamStole;
 };
 
-#endif // FLAG_H
+class EmployFlags : public WsjcppEmployBase {
+    public:
+        EmployFlags();
+        static std::string name() { return "EmployFlags"; }
+        virtual bool init() override;
+        virtual bool deinit() override;
+
+        void setDirectory(const std::string &sDirecotry);
+
+        // add flag attempt
+        void insertFlagAttempt(const std::string &sTeamId, const std::string &sFlag);
+
+        // count of flag attempts for init scoreboard
+        int numberOfFlagAttempts(const std::string &sTeamId);
+
+    private:
+        std::string TAG;
+        std::string m_sDirecotry;
+        std::map<std::string, int> m_mapNumberFlagAttemps;
+};
+
+#endif // EMPLOY_FLAGS_H

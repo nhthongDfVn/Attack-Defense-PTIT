@@ -4,7 +4,7 @@
 #include <team_status_row.h>
 #include <team.h>
 #include <service.h>
-#include <flag.h>
+#include <employ_flags.h>
 #include <string>
 #include <map>
 #include <vector>

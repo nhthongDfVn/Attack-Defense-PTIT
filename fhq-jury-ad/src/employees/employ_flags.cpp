@@ -1,8 +1,9 @@
-#include "flag.h"
-#include <iostream>
-#include <cstring>
+
+#include "employ_flags.h"
 #include <wsjcpp_core.h>
 
+// ---------------------------------------------------------------------
+// Flag
 Flag::Flag() {
     
 }
@@ -152,6 +153,58 @@ void Flag::copyFrom(const Flag &flag) {
     this->setTeamStole(flag.teamStole());
     this->setTimeStart(flag.timeStart());
     this->setTimeEnd(flag.timeEnd());
+}
+
+// ---------------------------------------------------------------------
+// EmployFlags
+
+REGISTRY_WJSCPP_EMPLOY(EmployFlags)
+
+EmployFlags::EmployFlags() 
+: WsjcppEmployBase(EmployFlags::name(), {}) {
+    TAG = EmployFlags::name();
+}
+
+// ---------------------------------------------------------------------
+
+bool EmployFlags::init() {
+    if (m_sDirecotry == "") {
+        WsjcppLog::info(TAG, "You must setDerectory before init");
+        return false;
+    }
+    std::string sFlagsAttempts = WsjcppCore::doNormalizePath(m_sDirecotry + "/attempts");
+    if (!WsjcppCore::dirExists(sFlagsAttempts)) {
+        WsjcppCore::makeDir(sFlagsAttempts);
+    }
+    return true;
+}
+
+// ---------------------------------------------------------------------
+
+bool EmployFlags::deinit() {
+    WsjcppLog::info(TAG, "deinit");
+    return true;
+}
+
+// ---------------------------------------------------------------------
+
+void EmployFlags::setDirectory(const std::string &sDirecotry) {
+    m_sDirecotry = sDirecotry;
+}
+
+// ---------------------------------------------------------------------
+
+// add flag attempt
+void EmployFlags::insertFlagAttempt(const std::string &sTeamId, const std::string &sFlag) {
+    WsjcppLog::warn(TAG, "Not implemented insertFlagAttempt");
+    // TODO must be special writer how will be append to file and rotate if need
+}
+
+// ---------------------------------------------------------------------
+
+// count of flag attempts for init scoreboard
+int EmployFlags::numberOfFlagAttempts(const std::string &sTeamId) {
+    return m_mapNumberFlagAttemps[sTeamId];
 }
 
 // ---------------------------------------------------------------------
