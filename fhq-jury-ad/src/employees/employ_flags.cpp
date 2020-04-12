@@ -50,6 +50,7 @@ void Flag::generateId() {
 // ---------------------------------------------------------------------
 
 void Flag::generateValue() {
+    // TODO redesign more freeble format
     static const std::string sAlphabet = "0123456789abcdef";
     char sUuid[37];
     memset(&sUuid, '\0', 37);
