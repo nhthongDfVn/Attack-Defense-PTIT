@@ -32,6 +32,7 @@ Scoreboard::Scoreboard(
     m_nAllStolenFlags = 0;
     m_nAllDefenceFlags = 0;
     m_nBacisCostsStolenFlagInPoints = nBacisCostsStolenFlagInPoints;
+    m_pEmployFlags = findWsjcppEmploy<EmployFlags>();
 
     m_mapTeamsStatuses.clear(); // possible memory leak
     for (unsigned int iteam = 0; iteam < vTeamsConf.size(); iteam++) {
@@ -181,7 +182,6 @@ void Scoreboard::initStateFromStorage() {
     }
 
     // load services statistics
-    EmployFlags *pEmployFlags = findWsjcppEmploy<EmployFlags>();
     m_nAllStolenFlags = 0;
     m_nAllDefenceFlags = 0;
     for (unsigned int i = 0; i < m_vServices.size(); i++) {
@@ -200,7 +200,7 @@ void Scoreboard::initStateFromStorage() {
     for (it = m_mapTeamsStatuses.begin(); it != m_mapTeamsStatuses.end(); it++) {
         TeamStatusRow *pRow = it->second;
 
-        int nTries = pEmployFlags->numberOfFlagAttempts(pRow->teamId());
+        int nTries = m_pEmployFlags->numberOfFlagAttempts(pRow->teamId());
         pRow->setTries(nTries);
         m_jsonScoreboard["scoreboard"][pRow->teamId()]["tries"] = nTries;
 
@@ -346,7 +346,7 @@ void Scoreboard::insertFlagPutFail(const Flag &flag, const std::string &sService
     std::string sServiceId = flag.serviceId();
     std::string sTeamId = flag.teamId();
     std::string sNewStatus = m_bRandom ? randomServiceStatus() : sServiceStatus;
-    m_pStorage->insertFlagPutFail(flag, sDescrStatus);
+    m_pEmployFlags->insertFlagPutFail(flag, sDescrStatus);
 
     std::lock_guard<std::mutex> lock(m_mutexJson);
     std::map<std::string,TeamStatusRow *>::iterator it;

@@ -26,12 +26,6 @@ public:
 
     virtual std::vector<Flag> listOfLiveFlags() = 0;
 
-    // when flag put fail
-    virtual void insertFlagPutFail(const Flag &flag, const std::string &sReason) = 0;
-
-    // when flag check fail
-    virtual void insertFlagCheckFail(const Flag &flag, const std::string &sReason) = 0;
-
     virtual int numberOfFlagSuccessPutted(const std::string &sTeamId, const std::string &sServiceId) = 0;
 
     // how much defence flags from specify service

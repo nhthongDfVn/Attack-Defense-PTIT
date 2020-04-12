@@ -5,6 +5,7 @@
 #include <scoreboard.h>
 #include <team.h>
 #include <service.h>
+#include <employ_flags.h>
 
 // struct 
 
@@ -25,6 +26,7 @@ class ServiceCheckerThread {
 		std::string TAG;
 		pthread_t m_checkerThread;
 		Config *m_pConfig;
+		EmployFlags *m_pEmployFlags;
 		Team m_teamConf;
 		Service m_serviceConf;
 

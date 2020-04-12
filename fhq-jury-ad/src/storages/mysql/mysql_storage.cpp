@@ -441,58 +441,6 @@ std::vector<Flag> MySqlStorage::listOfLiveFlags() {
 
 // ----------------------------------------------------------------------
 
-void MySqlStorage::insertFlagPutFail(const Flag &flag, const std::string &sReason) {
-    MYSQL *pConn = getDatabaseConnection();
-
-    std::string sQuery = "INSERT INTO flags_put_fails(serviceid, flag_id, flag, teamid, "
-        "   date_start, date_end, team_stole, reason) VALUES("
-        "'" + flag.serviceId() + "', "
-        + "'" + flag.id() + "', "
-        + "'" + flag.value() + "', "
-        + "'" + flag.teamId() + "', "
-        + std::to_string(flag.timeStart()) + ", "
-        + std::to_string(flag.timeEnd()) + ", "
-        + "'" + flag.teamStole() + "', "
-        + "'" + sReason + "'"
-        + ");";
-
-    if (mysql_query(pConn, sQuery.c_str())) {
-        WsjcppLog::err(TAG, "Error insert: " + std::string(mysql_error(pConn)));
-        return;
-    }
-
-    MYSQL_RES *pRes = mysql_use_result(pConn);
-    mysql_free_result(pRes);
-}
-
-// ----------------------------------------------------------------------
-
-void MySqlStorage::insertFlagCheckFail(const Flag &flag, const std::string &sReason) {
-    MYSQL *pConn = getDatabaseConnection();
-
-    std::string sQuery = "INSERT INTO flags_check_fails(serviceid, flag_id, flag, teamid, "
-        "   date_start, date_end, team_stole, reason) VALUES("
-        "'" + flag.serviceId() + "', "
-        + "'" + flag.id() + "', "
-        + "'" + flag.value() + "', "
-        + "'" + flag.teamId() + "', "
-        + std::to_string(flag.timeStart()) + ", "
-        + std::to_string(flag.timeEnd()) + ", "
-        + "'" + flag.teamStole() + "', "
-        + "'" + sReason + "'"
-        + ");";
-
-    if (mysql_query(pConn, sQuery.c_str())) {
-        WsjcppLog::err(TAG, "Error insert: " + std::string(mysql_error(pConn)));
-        return;
-    }
-
-    MYSQL_RES *pRes = mysql_use_result(pConn);
-    mysql_free_result(pRes);
-}
-
-// ----------------------------------------------------------------------
-
 std::vector<Flag> MySqlStorage::outdatedFlags(const Team &teamConf, const Service &serviceConf){
     MYSQL *pConn = getDatabaseConnection();
 

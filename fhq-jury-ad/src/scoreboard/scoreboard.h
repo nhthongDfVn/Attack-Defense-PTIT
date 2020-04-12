@@ -50,6 +50,7 @@ class Scoreboard {
     private:
         std::string TAG;
         Storage *m_pStorage;
+        EmployFlags *m_pEmployFlags;
         std::vector<Service> m_vServices;
         std::vector<Team> m_vTeams;
         int m_nBacisCostsStolenFlagInPoints;
