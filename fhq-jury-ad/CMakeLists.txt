@@ -5,7 +5,6 @@ project(fhq-jury-ad)
 include(${CMAKE_CURRENT_SOURCE_DIR}/src.wsjcpp/CMakeLists.txt)
 
 #### BEGIN_WSJCPP_APPEND
-
 #### END_WSJCPP_APPEND
 
 set(CMAKE_CXX_STANDARD 11)
@@ -32,6 +31,8 @@ list (APPEND WSJCPP_INCLUDE_DIRS "src/http_handlers")
 # employees
 list (APPEND WSJCPP_SOURCES "./src/employees/employ_team_logos.h")
 list (APPEND WSJCPP_SOURCES "./src/employees/employ_team_logos.cpp")
+list (APPEND WSJCPP_SOURCES "./src/employees/employ_scoreboard.h")
+list (APPEND WSJCPP_SOURCES "./src/employees/employ_scoreboard.cpp")
 
 # checker
 list (APPEND WSJCPP_SOURCES "src/checker/dorunchecker.h")
